@@ -11,22 +11,38 @@ const fetchProduit = async() => {
         produitData = promise ;
         console.log((produitData.name));
 
+        const productImage = document.createElement('img');
+            productImage.src = produitData.imageUrl;
+            productImage.alt = produitData.altTxt
+            image.append(productImage);
+
+
         const productTitle = document.createElement('h1');
             productTitle.textContent = produitData.name;
             title.append(productTitle);
 
-            const productDescription = document.createElement('p');
+        const productDescription = document.createElement('p');
             productDescription.textContent = produitData.description;
             description.append(productDescription);
 
-            const productPrice = document.createElement('span');
-            productPrice.textContent = (produitData.price/100);       // Possible erreur au niveau du texteContent
+        const productPrice = document.createElement('span');
+            productPrice.textContent = produitData.price;
             price.append(productPrice);
 
-            const productImage = document.createElement('img');
-            productImage.src = produitData.imageUrl;
-            productImage.alt = produitData.altTxt
-            image.append(productImage);
+        const productColor1 = document.createElement('option');
+            productColor1.text = produitData.colors[0];
+            colors.append(productColor1);
+
+        const productColor2 = document.createElement('option');
+            productColor2.text = produitData.colors[1];
+            colors.append(productColor2);
+
+        const productColor3 = document.createElement('option');
+            productColor3.text = produitData.colors[2];
+            colors.append(productColor3);
+
+
+
         });
 };
 
