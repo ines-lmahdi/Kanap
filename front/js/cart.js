@@ -21,4 +21,53 @@ Storage.length; ---------------> Renvoie un entier représentant le nombre d'él
 
 Il faut faire un panier avec JSON
 
+Faire une boucle pour creer le panier
+
 */
+
+
+/*const productImage = document.createElement('img');
+productImage.src = produitData.imageUrl;
+productImage.alt = produitData.altTxt
+image.append(productImage);*/
+
+//for (localStorage)
+
+const local = JSON.parse(localStorage.getItem("kanap"))
+if(local != null){
+const article = document.createElement('article');
+    article.id = `${localStorage.getItem("référence")}`;
+    article.color = `${localStorage.getItem("option")}`;
+    cart__items.append(article);
+
+
+const divImage= document.createElement('div');
+    divImage.className = ("cart__items__img");
+    cart__items.append(divImage);
+
+const image = document.createElement('img');
+    image.src = produitData.imageUrl;
+    image.alt = produitData.altTxt;
+    image.append(image);
+
+const divContent= document.createElement('div');
+    divImage.className = ("cart__items__content");
+    cart__items.append(divContent);
+
+const divDescription= document.createElement('div');
+    divDescription.className = ("cart__items__content__description");
+    cart__items.append(divDescription);
+
+const titre = document.createElement('h2');
+    h2.text= `${localStorage.getItem("name")}`;
+    divDescription.append(titre);
+
+const option= document.createElement('p');
+    p.text= `${localStorage.getItem("option")}`;
+    divDescription.append(option);
+
+const prix = document.createElement('p');
+    p.text = `${localStorage.getItem("prix")}`;
+    divDescription.append(prix);
+}
+

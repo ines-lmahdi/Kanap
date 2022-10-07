@@ -22,7 +22,7 @@ const fetchProduit = async() => {
 
         const productImage = document.createElement('img');
             productImage.src = produitData.imageUrl;
-            productImage.alt = produitData.altTxt
+            productImage.alt = produitData.altTxt;
             image.append(productImage);
 
         // IMPLEMENTATION H1
@@ -69,24 +69,24 @@ fetchProduit() ;
 
 // LOCAL STORAGE
 
-/*
-localStorage.setItem("clé", "valeur")
-localStorage.getItem("clé")
-localStorage.clear();
-*/
 
 const local = JSON.parse(localStorage.getItem("kanap"));
 
 addToCart.onclick = () =>{
     const kanap = {
-
         nom: produitData.name,
         option: colors.value,
+        reference: produitData._id,
         prix: produitData.price,
-        quantité: quantity.value
+        quantité: quantity.value,
+        image: produitData.imageUrl
     }
-    localStorage.setItem("kanap", JSON.stringify(kanap));
-    //document.location.reload();
+    localStorage.setItem(produitData.name + colors.value, JSON.stringify(kanap));
+
+
+    document.location.reload();
+
+
     //localStorage.setItem(produitData.name + colors.value, quantity.value)
 }
 
