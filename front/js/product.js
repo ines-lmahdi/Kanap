@@ -57,13 +57,40 @@ const fetchProduit = async() => {
         const addToCart = document.getElementById('addToCart');
             addToCart.addEventListener('click', event => {
                 let quantityKanap = document.getElementById('itemQuantity');
-                window.alert('Félicitation ! Votre article '+ produitData.name +' '+ produitData.colors + ' ont été ajouté '+ quantity +' fois au panier !');
+                window.alert('Félicitation ! Votre article '+ produitData.name + '  ' + colors.value + ' ont été ajouté '+ quantity.value +' fois au panier !');
         });
 
     });
 
 }
 fetchProduit() ;
+
+
+
+// LOCAL STORAGE
+
+/*
+localStorage.setItem("clé", "valeur")
+localStorage.getItem("clé")
+localStorage.clear();
+*/
+
+const local = JSON.parse(localStorage.getItem("kanap"));
+
+addToCart.onclick = () =>{
+    const kanap = {
+
+        nom: produitData.name,
+        option: colors.value,
+        prix: produitData.price,
+        quantité: quantity.value
+    }
+    localStorage.setItem("kanap", JSON.stringify(kanap));
+    //document.location.reload();
+    //localStorage.setItem(produitData.name + colors.value, quantity.value)
+}
+
+
 
 
 
