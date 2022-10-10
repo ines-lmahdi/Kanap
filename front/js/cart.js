@@ -33,41 +33,61 @@ image.append(productImage);*/
 
 //for (localStorage)
 
-const local = JSON.parse(localStorage.getItem("kanap"))
-if(local != null){
-const article = document.createElement('article');
-    article.id = `${localStorage.getItem("référence")}`;
-    article.color = `${localStorage.getItem("option")}`;
-    cart__items.append(article);
+const fetchProduit = async() => {
+    await fetch(`http://localhost:3000/api/products/${produit}`)
+    .then((Response) => Response.json())
+    .then ((promise) => {
+        produitData = promise ;
+        console.log((produitData.name));
 
 
-const divImage= document.createElement('div');
-    divImage.className = ("cart__items__img");
-    cart__items.append(divImage);
+    const article = document.createElement('article');
+        //article.id = `${localStorage.getItem("référence")}`;
+        //article.color = `${localStorage.getItem("option")}`;
+        cart__items.append(article);
 
-const image = document.createElement('img');
-    image.src = produitData.imageUrl;
-    image.alt = produitData.altTxt;
-    image.append(image);
 
-const divContent= document.createElement('div');
-    divImage.className = ("cart__items__content");
-    cart__items.append(divContent);
+    const divImage= document.createElement('div');
+        divImage.className = ("cart__items__img");
+        cart__items.append(divImage);
 
-const divDescription= document.createElement('div');
-    divDescription.className = ("cart__items__content__description");
-    cart__items.append(divDescription);
+    const image = document.createElement('img');
+        image.src = produitData.imageUrl;
+        image.alt = produitData.altTxt;
+        image.append(image);
 
-const titre = document.createElement('h2');
-    h2.text= `${localStorage.getItem("name")}`;
-    divDescription.append(titre);
+    const divContent= document.createElement('div');
+        divImage.className = ("cart__items__content");
+        cart__items.append(divContent);
 
-const option= document.createElement('p');
-    p.text= `${localStorage.getItem("option")}`;
-    divDescription.append(option);
+    const divDescription= document.createElement('div');
+        divDescription.className = ("cart__items__content__description");
+        cart__items.append(divDescription);
 
-const prix = document.createElement('p');
-    p.text = `${localStorage.getItem("prix")}`;
-    divDescription.append(prix);
-}
+    const titre = document.createElement('h2');
+        h2.text= `${localStorage.getItem("name")}`;
+        divDescription.append(titre);
 
+    const option= document.createElement('p');
+        p.text= `${localStorage.getItem("option")}`;
+        divDescription.append(option);
+
+    const prix = document.createElement('p');
+        p.text = `${localStorage.getItem("prix")}`;
+        divDescription.append(prix);
+    }
+    break
+};
+
+
+
+
+fetchProduit() ;
+
+
+const local = JSON.parse(localStorage.getItem("kanap"));
+if(local != null)
+h1.textContent = `Bonjour ${localStorage.getItem("nom")}`;
+
+localStorage.setItem("prix", JSON.stringify(kanap));
+document.location.reload();
