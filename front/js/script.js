@@ -1,30 +1,3 @@
-// Données completes de l'API en tableau
-
-/*
-fetch('http://localhost:3000/api/products')
-    .then(res => res.json())
-    .then(res => console.table(res))
-*/
-
-// Afficher dans la console l'image
-
-/*
-fetch('http://localhost:3000/api/products')
-    .then(res => res.json())
-    .then(data => console.log(data[0].imageUrl))
-*/
-
-// Afficher dans la console toutes les données d'un kanap
-/*
-fetch('http://localhost:3000/api/products')
-    .then(res => res.json())
-    .then(data => {
-        href = console.log(data[0]._id);
-        h3 = console.log(data[0].name);
-        p = console.log(data[0].description);
-        img = console.log(data[0].imageUrl);
-    })*/
-
 fetch('http://localhost:3000/api/products')
     .then(response => {
         if (response.ok) {

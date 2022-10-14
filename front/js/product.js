@@ -1,52 +1,51 @@
 
-const produit = window.location.search.split("?id=").join("");
-console.log(produit);
+const productId = window.location.search.split("?id=").join("");//Regarder comment utiliser la classe UrlSearchParam
 
-let produitData = [];
-console.log(produitData);
-
-fetch('http://localhost:3000/api/products/' + produit)
-.then((Response) => Response.json())
-.then ((promise) => {
-    produitData = promise ;
-    console.log((produitData.name));
+fetch('http://localhost:3000/api/products/' + productId)
+.then((response) => response.json())// tester la reponse avant de retourner la conversion du body
+.then ((productData) => { // Non promise n'est pas une promise mais les données récupérées du corps de la réponse
+    console.log((productData.name));
 
         // IMPLEMENTATION TITRE PAGE
 
     const productPageTitle = document.title;
-    document.title = produitData.name;
+    document.title = productData.name;
 
 
     // IMPLEMENTATION IMAGE
 
     const productImage = document.createElement('img');
-        productImage.src = produitData.imageUrl;
-        productImage.alt = produitData.altTxt;
-        image.append(productImage);
+    productImage.src = productData.imageUrl;
+    productImage.alt = productData.altTxt;
+    image.append(productImage);
 
     // IMPLEMENTATION H1
 
     const productTitle = document.createElement('h1');
-        productTitle.textContent = produitData.name;
-        title.append(productTitle);
+    productTitle.textContent = productData.name;
+    title.append(productTitle);
 
         // IMPLEMENTATION DESCRIPTION
 
     const productDescription = document.createElement('p');
-        productDescription.textContent = produitData.description;
-        description.append(productDescription);
+    productDescription.textContent = productData.description;
+    description.append(productDescription);
 
         // IMPLEMENTATION PRIX
 
     const productPrice = document.createElement('span');
-        productPrice.textContent = produitData.price;
-        price.append(productPrice);
+    productPrice.textContent = productData.price;
+    price.append(productPrice);
 
         // IMPLEMENTATION OPTION COLOR
 
-    const productColor1 = document.createElement('option');
-        productColor1.text = produitData.colors[0];
-        colors.append(productColor1);
+    const colors = document.getElementById('colors');
+    const option = productData.colors;
+
+    option.forEach((element,key) => {
+        colors[key]= new  Option(element,key);
+
+    });
 
     // NOMBRE DE PRODUIT SELECTIONNÉ
 
@@ -57,12 +56,34 @@ fetch('http://localhost:3000/api/products/' + produit)
     addToCart.addEventListener('click', event => {
         const cart = getCart();
         let quantityKanap = document.getElementById('itemQuantity');
-
-        localStorage.setItem(JSON.stringify(cart));
-        window.alert('Félicitation ! Votre article '+ produitData.name + '  ' + colors.value + ' ont été ajouté '+ quantity.value +' fois au panier !');
+        //localStorage.setItem(JSON.stringify(cart));
+        window.alert('Félicitation ! Votre article '+ productData.name + '  ' + option + ' a été ajouté '+ quantity.value +' fois au panier !');
     });
 
 });
+
+    /*
+        //si produit existe
+        cart[produitData.id + colors.value].quantity = ajout de la quantite à la quantité initiale
+        // si produit n'xiste pas dans le panier
+        cart[produitData.id + colors.value] = {
+            id: id,
+            quantity: quantity,
+            color: color
+        }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 addToCart.onclick = () =>{
     const kanap = {
