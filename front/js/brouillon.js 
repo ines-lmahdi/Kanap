@@ -1,0 +1,53 @@
+// LOCALSTORAGE
+
+    /*const addToCart = document.getElementById('addToCart');
+    addToCart.addEventListener('click', event => {
+        const cart = getCart();
+        let quantityKanap = document.getElementById('itemQuantity');
+        localStorage.setItem('kanap', JSON.stringify(cart));
+    });*/
+
+/*const cart[ productId, colors.value ]{
+    id: productId,
+    color: option.value,
+    quantity: quantity.value,
+}
+
+const produit = productId + option.value;
+
+localStorage.setItem("produit", JSON.stringify(panier));
+
+const retrieved = JSON.parse(localStorage.getItem("produit"));
+
+console.log(retrieved);
+
+
+});*/
+
+
+/*
+addToCart.onclick = () =>{
+    const kanap = {
+        nom: produitData.name,
+        option: colors.value,
+        reference: produitData._id,
+        prix: produitData.price,
+        quantité: quantity.value,
+        image: produitData.imageUrl
+    }
+    localStorage.setItem(produitData.name + colors.value, JSON.stringify(kanap));
+
+
+    document.location.reload();
+
+
+    //localStorage.setItem(produitData.name + colors.value, quantity.value)
+    */
+
+
+
+
+
+
+
+//https://www.youtube.com/watch?v=vsiajnM7Xuw&t=518s

@@ -1,5 +1,6 @@
 
 const productId = window.location.search.split("?id=").join("");//Regarder comment utiliser la classe UrlSearchParam
+let colorSelector = document.getElementById('colors');
 
 fetch('http://localhost:3000/api/products/' + productId)
 .then((response) => response.json())// tester la reponse avant de retourner la conversion du body
@@ -38,34 +39,74 @@ fetch('http://localhost:3000/api/products/' + productId)
     price.append(productPrice);
 
         // IMPLEMENTATION OPTION COLOR
-
+/*
     const colors = document.getElementById('colors');
     const option = productData.colors;
 
     option.forEach((element,key) => {
         colors[key]= new  Option(element,key);
 
-    });
+    });*/
 
-    // NOMBRE DE PRODUIT SELECTIONNÉ
+    let colorSelector = document.getElementById('colors');
+    let newOption = document.createElement('option' );
+    const tableauColor = productData.colors;
+    console.log(tableauColor);
+
+    for (let element of tableauColor){
+        newOption.textContent = element;
+        colorSelector.append(newOption);
+        newOption.setAttribute('value',element);
+    }
 
 
-    // MESSAGE D'ALERTE
 
-    const addToCart = document.getElementById('addToCart');
-    addToCart.addEventListener('click', event => {
-        const cart = getCart();
-        let quantityKanap = document.getElementById('itemQuantity');
-        //localStorage.setItem(JSON.stringify(cart));
-        window.alert('Félicitation ! Votre article '+ productData.name + '  ' + option + ' a été ajouté '+ quantity.value +' fois au panier !');
-    });
-
+   /* tableauColor.forEach(element => {
+        colorSelector.appendChild(newOption);
+        newOption.textContent =  element;
+        newOption.setAttribute('value',element);
+        console.log(element);
+    });*/
 });
 
-    /*
-        //si produit existe
+
+
+
+//button.addEventListener('click', event =>{
+//   localStorage.setItem(key ,jsonCart)
+//})
+
+
+
+// test
+const button = document.querySelector('button');
+const select = document.querySelector('select');
+button.addEventListener('click', ()=>{
+    const objectSelectionner = select.selectedIndex ;
+    const key = [ productId + objectSelectionner ];
+    localStorage.setItem( key ,'key');
+    console.log(key);
+});
+
+
+
+
+/*function getCart() {
+    const jsonCart = localStorage.getItem('addToCart');
+
+    if (jsonCart !== null) {
+        cart[productData.id + productData.colors] = {
+            id: productData.id,
+            quantity: quantity,
+            color: color.Value,
+        }
+        return JSON.parse(jsonCart);
+    }
+}*/
+
+        /*//si produit existe
         cart[produitData.id + colors.value].quantity = ajout de la quantite à la quantité initiale
-        // si produit n'xiste pas dans le panier
+        // si produit n'existe pas dans le panier
         cart[produitData.id + colors.value] = {
             id: id,
             quantity: quantity,
@@ -81,32 +122,3 @@ fetch('http://localhost:3000/api/products/' + productId)
 
 
 
-
-
-
-/*
-addToCart.onclick = () =>{
-    const kanap = {
-        nom: produitData.name,
-        option: colors.value,
-        reference: produitData._id,
-        prix: produitData.price,
-        quantité: quantity.value,
-        image: produitData.imageUrl
-    }
-    localStorage.setItem(produitData.name + colors.value, JSON.stringify(kanap));
-
-
-    document.location.reload();
-
-
-    //localStorage.setItem(produitData.name + colors.value, quantity.value)
-    */
-
-
-
-
-
-
-
-//https://www.youtube.com/watch?v=vsiajnM7Xuw&t=518s
