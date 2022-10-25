@@ -48,15 +48,23 @@ fetch('http://localhost:3000/api/products/' + productId)
     });*/
 
     let colorSelector = document.getElementById('colors');
-    let newOption = document.createElement('option' );
+    let newOption = document.createElement('option');
     const tableauColor = productData.colors;
     console.log(tableauColor);
 
-    for (let element of tableauColor){
+    for(let element of tableauColor){
+        let newColor = new Option(element);
+        newOption.setAttribute('value',element);
+        const select = document.querySelector('select');
+        select.add(newColor,undefined);
+    };
+
+    /*(let element of tableauColor){
         newOption.textContent = element;
         colorSelector.append(newOption);
         newOption.setAttribute('value',element);
-    }
+    break
+    }*/
 
 
 
@@ -86,8 +94,8 @@ const objectSelectionner = select.selectedIndex;
 const key = [ productId + objectSelectionner ];
 const cart = {
     'id' : productId,
+    'option': select.selectedIndex,
     'quantity': quantity.value,
-    'option': objectSelectionner,
 }
 const jsonCart = JSON.stringify(cart);
 
