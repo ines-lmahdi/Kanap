@@ -1,4 +1,3 @@
-
 const productId = window.location.search.split("?id=").join("");//Regarder comment utiliser la classe UrlSearchParam
 let colorSelector = document.getElementById('colors');
 
@@ -78,24 +77,32 @@ fetch('http://localhost:3000/api/products/' + productId)
 
 
 
-// test
+//  LOCALSTORAGE VALIDÉ !!
+
 const button = document.querySelector('button');
 const select = document.querySelector('select');
+const quantity = document.getElementById('quantity');
+const objectSelectionner = select.selectedIndex;
+const key = [ productId + objectSelectionner ];
+const cart = {
+    'id' : productId,
+    'quantity': quantity.value,
+    'option': objectSelectionner,
+}
+const jsonCart = JSON.stringify(cart);
+
 button.addEventListener('click', ()=>{
-    const objectSelectionner = select.selectedIndex ;
-    const key = [ productId + objectSelectionner ];
-    localStorage.setItem( key ,'key');
-    console.log(key);
+    localStorage.setItem( 'key' , jsonCart);
+    console.log('kanap', jsonCart);
 });
 
-
-
+//localStorage.clear();
 
 /*function getCart() {
-    const jsonCart = localStorage.getItem('addToCart');
+    const jsonCart = localStorage.getItem('Cart');
 
     if (jsonCart !== null) {
-        cart[productData.id + productData.colors] = {
+        cart[productId + objectSelectionner] = {
             id: productData.id,
             quantity: quantity,
             color: color.Value,
@@ -103,6 +110,8 @@ button.addEventListener('click', ()=>{
         return JSON.parse(jsonCart);
     }
 }*/
+
+
 
         /*//si produit existe
         cart[produitData.id + colors.value].quantity = ajout de la quantite à la quantité initiale
