@@ -59,50 +59,31 @@ fetch('http://localhost:3000/api/products/' + productId)
         select.add(newColor,undefined);
     };
 
-    /*(let element of tableauColor){
-        newOption.textContent = element;
-        colorSelector.append(newOption);
-        newOption.setAttribute('value',element);
-    break
-    }*/
+    const button = document.querySelector('button');
+    const select = document.querySelector('select');
+    const optionQ = document.querySelector('option');
+    const quantity = document.getElementById('quantity');
+    const objectSelectionner = select.selectedIndex ;
+    const key =  productId + objectSelectionner ;
+    const cart = {
+        'id' : key,
+        'option': optionQ,
+        'quantity': quantity.value,
+    }
+    const jsonCart = JSON.stringify(cart);
+// Pour chaque event click, il faudra rajouter une ligne key.
+    button.addEventListener('click', ()=>{
+        localStorage.setItem( 'product' , jsonCart);
+        console.log('product', jsonCart);
+    });
 
-
-
-   /* tableauColor.forEach(element => {
-        colorSelector.appendChild(newOption);
-        newOption.textContent =  element;
-        newOption.setAttribute('value',element);
-        console.log(element);
-    });*/
 });
-
-
-
-
-//button.addEventListener('click', event =>{
-//   localStorage.setItem(key ,jsonCart)
-//})
 
 
 
 //  LOCALSTORAGE VALIDÉ !!
 
-const button = document.querySelector('button');
-const select = document.querySelector('select');
-const quantity = document.getElementById('quantity');
-const objectSelectionner = select.selectedIndex;
-const key = [ productId + objectSelectionner ];
-const cart = {
-    'id' : productId,
-    'option': select.selectedIndex,
-    'quantity': quantity.value,
-}
-const jsonCart = JSON.stringify(cart);
 
-button.addEventListener('click', ()=>{
-    localStorage.setItem( 'key' , jsonCart);
-    console.log('kanap', jsonCart);
-});
 
 //localStorage.clear();
 
@@ -129,13 +110,3 @@ button.addEventListener('click', ()=>{
             quantity: quantity,
             color: color
         }*/
-
-
-
-
-
-
-
-
-
-
