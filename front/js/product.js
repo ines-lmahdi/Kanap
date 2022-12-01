@@ -51,11 +51,3 @@ fetch('http://localhost:3000/api/products/' + productId)
         select.add(newColor,undefined);
     };
 });
-
-// BOUTON addToCart
-
-let addToCart = document.getElementById('addToCart');
-
-addToCart.addEventListener("click", addBasket);
-
-

@@ -20,7 +20,7 @@ function getBasket(){
 
 function addBasket(product){
     let basket = getBasket();
-    let foundProduct = basket.find(p => p.id == product.id);
+    let foundProduct = basket.find(p => p.id == productId.id);
     if (foundProduct != undefined){
         foundProduct.quantity++;
     } else {
@@ -74,3 +74,12 @@ function getTotalPrice(){
     return total;
 }
 //localStorage.clear();*/
+
+
+// BOUTON addToCart
+
+let addToCart = document.getElementById('addToCart');
+
+addToCart.addEventListener("click", addBasket);
+
+// https://www.youtube.com/watch?v=vMT4NNFYno0&t=749s
