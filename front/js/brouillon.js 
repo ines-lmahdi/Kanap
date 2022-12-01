@@ -51,3 +51,55 @@ addToCart.onclick = () =>{
 
 
 //https://www.youtube.com/watch?v=vsiajnM7Xuw&t=518s
+
+
+
+/*
+    const button = document.querySelector('button');
+    const select = document.querySelector('select');
+    const optionQ = document.querySelector('option');
+    const quantity = document.getElementById('quantity');
+    const objectSelectionner = select.selectedIndex ;
+    const key =  productId + objectSelectionner ;
+    const cart = {
+        'id' : key,
+        'option': optionQ,
+        'quantity': quantity.value,
+    }
+    const jsonCart = JSON.stringify(cart);
+// Pour chaque event click, il faudra rajouter une ligne key.
+    button.addEventListener('click', ()=>{
+        localStorage.setItem( 'product' , jsonCart);
+        console.log('product', jsonCart);
+    });*/
+
+});
+
+
+
+//  LOCALSTORAGE VALIDÉ !!
+
+
+/*function getCart() {
+    const jsonCart = localStorage.getItem('Cart');
+
+    if (jsonCart !== null) {
+        cart[productId + objectSelectionner] = {
+            id: productData.id,
+            quantity: quantity,
+            color: color.Value,
+        }
+        return JSON.parse(jsonCart);
+    }
+}*/
+
+
+
+        /*//si produit existe
+        cart[produitData.id + colors.value].quantity = ajout de la quantite à la quantité initiale
+        // si produit n'existe pas dans le panier
+        cart[produitData.id + colors.value] = {
+            id: id,
+            quantity: quantity,
+            color: color
+        }*/

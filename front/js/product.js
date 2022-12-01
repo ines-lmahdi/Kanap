@@ -25,27 +25,19 @@ fetch('http://localhost:3000/api/products/' + productId)
     productTitle.textContent = productData.name;
     title.append(productTitle);
 
-        // IMPLEMENTATION DESCRIPTION
+    // IMPLEMENTATION DESCRIPTION
 
     const productDescription = document.createElement('p');
     productDescription.textContent = productData.description;
     description.append(productDescription);
 
-        // IMPLEMENTATION PRIX
+    // IMPLEMENTATION PRIX
 
     const productPrice = document.createElement('span');
     productPrice.textContent = productData.price;
     price.append(productPrice);
 
-        // IMPLEMENTATION OPTION COLOR
-/*
-    const colors = document.getElementById('colors');
-    const option = productData.colors;
-
-    option.forEach((element,key) => {
-        colors[key]= new  Option(element,key);
-
-    });*/
+    // IMPLEMENTATION OPTION COLOR
 
     let colorSelector = document.getElementById('colors');
     let newOption = document.createElement('option');
@@ -58,55 +50,12 @@ fetch('http://localhost:3000/api/products/' + productId)
         const select = document.querySelector('select');
         select.add(newColor,undefined);
     };
-
-    const button = document.querySelector('button');
-    const select = document.querySelector('select');
-    const optionQ = document.querySelector('option');
-    const quantity = document.getElementById('quantity');
-    const objectSelectionner = select.selectedIndex ;
-    const key =  productId + objectSelectionner ;
-    const cart = {
-        'id' : key,
-        'option': optionQ,
-        'quantity': quantity.value,
-    }
-    const jsonCart = JSON.stringify(cart);
-// Pour chaque event click, il faudra rajouter une ligne key.
-    button.addEventListener('click', ()=>{
-        localStorage.setItem( 'product' , jsonCart);
-        console.log('product', jsonCart);
-    });
-
 });
 
+// BOUTON addToCart
+
+let addToCart = document.getElementById('addToCart');
+
+addToCart.addEventListener("click", addBasket);
 
 
-//  LOCALSTORAGE VALIDÉ !!
-
-
-
-//localStorage.clear();
-
-/*function getCart() {
-    const jsonCart = localStorage.getItem('Cart');
-
-    if (jsonCart !== null) {
-        cart[productId + objectSelectionner] = {
-            id: productData.id,
-            quantity: quantity,
-            color: color.Value,
-        }
-        return JSON.parse(jsonCart);
-    }
-}*/
-
-
-
-        /*//si produit existe
-        cart[produitData.id + colors.value].quantity = ajout de la quantite à la quantité initiale
-        // si produit n'existe pas dans le panier
-        cart[produitData.id + colors.value] = {
-            id: id,
-            quantity: quantity,
-            color: color
-        }*/
