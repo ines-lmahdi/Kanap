@@ -103,3 +103,4 @@ addToCart.onclick = () =>{
             quantity: quantity,
             color: color
         }*/
+// https://www.youtube.com/watch?v=vMT4NNFYno0&t=749s

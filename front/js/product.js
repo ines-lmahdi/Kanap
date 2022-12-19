@@ -1,6 +1,7 @@
 const productId = window.location.search.split("?id=").join("");//Regarder comment utiliser la classe UrlSearchParam
 let colorSelector = document.getElementById('colors');
 
+
 fetch('http://localhost:3000/api/products/' + productId)
 .then((response) => response.json())// tester la reponse avant de retourner la conversion du body
 .then ((productData) => { // Non promise n'est pas une promise mais les données récupérées du corps de la réponse

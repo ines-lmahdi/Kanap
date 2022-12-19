@@ -1,7 +1,9 @@
 // LOCALSTORAGE
+
 //Ajouter au panier
 
 function saveBasket(basket){
+    console.log("saveBasket");
     localStorage.setItem("basket", JSON.stringify(basket));
 }
 
@@ -20,15 +22,26 @@ function getBasket(){
 
 function addBasket(product){
     let basket = getBasket();
-    let foundProduct = basket.find(p => p.id == productId.id);
+    const priceSelect = document.getElementById('price').value;
+    const quantitySelect = document.getElementById('quantity').value;
+    const colorSelect = document.getElementById('colors').value;
+    let foundProduct = basket.find(p => p.id == productId && colorSelect === p.color);
+    //document.getElementById()
     if (foundProduct != undefined){
-        foundProduct.quantity++;
+        foundProduct.quantity = parseInt(foundProduct.quantity) + parseInt(quantitySelect);
     } else {
-        product.quantity = 1;
-        basket.push(product);
+
+        basket.push({
+            id: productId,
+            quantity: quantitySelect,
+            color: colorSelect,
+            price: priceSelect
+        });
     }
+    console.log(basket);
     saveBasket(basket);
 }
+
 
 //Supprimer les quantiés
 
@@ -73,7 +86,7 @@ function getTotalPrice(){
     }
     return total;
 }
-//localStorage.clear();*/
+//localStorage.clear();
 
 
 // BOUTON addToCart
@@ -82,4 +95,5 @@ let addToCart = document.getElementById('addToCart');
 
 addToCart.addEventListener("click", addBasket);
 
-// https://www.youtube.com/watch?v=vMT4NNFYno0&t=749s
+
+//console.log(addBasket({id:"5746", "name":"kanapou", "price":20.00}));
