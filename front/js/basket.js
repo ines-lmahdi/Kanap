@@ -23,19 +23,22 @@ function getBasket(){
 function addBasket(product){
     let basket = getBasket();
     const priceSelect = document.getElementById('price').value;
+    const titleSelect = document.getElementById('title').value;
     const quantitySelect = document.getElementById('quantity').value;
     const colorSelect = document.getElementById('colors').value;
-    let foundProduct = basket.find(p => p.id == productId && colorSelect === p.color);
-    //document.getElementById()
+    const imageSelect = document.getElementById('image').value;
+    let foundProduct = basket.find(p => p.id == productId && colorSelect === p.color && p.title === titleSelect);
     if (foundProduct != undefined){
         foundProduct.quantity = parseInt(foundProduct.quantity) + parseInt(quantitySelect);
     } else {
 
         basket.push({
             id: productId,
+            title: titleSelect,
             quantity: quantitySelect,
             color: colorSelect,
-            price: priceSelect
+            price: priceSelect,
+            image: imageSelect
         });
     }
     console.log(basket);
