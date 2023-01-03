@@ -33,7 +33,6 @@ function addBasket(product){
             id: productId,
             quantity: quantitySelect,
             color: colorSelect,
-
         });
     }
     console.log(basket);
