@@ -25,18 +25,21 @@ function addBasket(product){
     const quantitySelect = document.getElementById('quantity').value;
     const colorSelect = document.getElementById('colors').value;
     let foundProduct = basket.find(p => p.id == productId && colorSelect === p.color);
-    if (foundProduct != undefined){
-        foundProduct.quantity = parseInt(foundProduct.quantity) + parseInt(quantitySelect);
-    } else {
-
-        basket.push({
-            id: productId,
-            quantity: quantitySelect,
-            color: colorSelect,
-        });
+    if(colorSelect && quantitySelect != 0){
+        if (foundProduct != undefined){
+            foundProduct.quantity = parseInt(foundProduct.quantity) + parseInt(quantitySelect);
+        } else {
+            basket.push({
+                id: productId,
+                quantity: quantitySelect,
+                color: colorSelect,
+            });
+        }
+        console.log(basket);
+        saveBasket(basket);
+    } else{
+        alert("Veuillez sélectionner une couleur ainsi qu'une option")
     }
-    console.log(basket);
-    saveBasket(basket);
 }
 
 
@@ -79,7 +82,7 @@ function getTotalPrice(){
     let basket = getBasket();
     let total = 0;
     for(let product of basket){
-        total += product.quantity *product.price;
+        total += product.quantity * product.price;
     }
     return total;
 }

@@ -71,6 +71,7 @@ const products = [
     "description": "Mauris molestie laoreet finibus. Aenean scelerisque convallis lacus at dapibus. Morbi imperdiet enim metus rhoncus.",
     "altTxt": "Photo d'un canapé rose, trois places"
   }
+
 ];
 
 exports.find = () => {
