@@ -42,15 +42,6 @@ function addBasket(product){
     }
 }
 
-
-//Supprimer les quantiés
-
-function removeFromBasket(product){
-    let basket = getBasket();
-    basket = basket.filter(p => p.id != product.id);
-    saveBasket(basket);
-}
-
 //Modifier les quantités depuis le panier
 
 function changeQuantity(product, quantity){
@@ -94,6 +85,3 @@ function getTotalPrice(){
 let addToCart = document.getElementById('addToCart');
 
 addToCart.addEventListener("click", addBasket);
-
-
-
