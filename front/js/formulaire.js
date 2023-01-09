@@ -7,7 +7,7 @@ function controlFirstName(){
     if(/^[A-Za-z]{2,20}$/.test(firstNameValue)){
         return true;
     } else{
-        window.alert("Le prénom n'est pas valide");
+        window.alert("Le nom n'est pas valide");
         return false;
     }
 }
