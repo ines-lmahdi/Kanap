@@ -71,38 +71,7 @@ ctx.parentElement.parentElement.parentElement.parentElement.remove();
 
 function modifyQuantity(){
   let quantity = document.getElementsByClassName('itemQuantity').value;
-
-
 }
 
 modifyQuantity();
 
-/*
-fetch('http://localhost:3000/front/html/cart.html'){
-  .then(response => response.json())
-  .then(response =>{
-let objectContact = URL.createObjectURL(contact)
-    objectContact.scr {
-         'firstName': ${response.firstName},
-         'lastName': ${response.lastName},
-         'address': ${response.address},
-         'city': ${response.city},
-         'email': ${response.email}
-  })
-}
-
-
-// REGEX EMAIL
-
-let mail = document.getElementById(email);
-function ValidateEmail(mail)
-{
- if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
-  {
-    return (true)
-  }
-    alert("You have entered an invalid email address!")
-    return (false)
-}
-let order = document.getElementById('order');
-*/
