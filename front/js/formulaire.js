@@ -7,7 +7,7 @@ function controlFirstName(){
     if(/^[A-Za-z]{2,20}$/.test(firstNameValue)){
         return true;
     } else{
-        window.alert("Le nom n'est pas valide");
+            window.alert("Le prénom n'est pas valide");
         return false;
     }
 }
@@ -47,6 +47,7 @@ function controlEmail(){
         window.alert("email est invalide");
     }
 }
+
 function saveFormulaire(){
     let form = document.querySelector('.cart__order__form');
     form.addEventListener('submit',event => {
@@ -82,6 +83,4 @@ function saveFormulaire(){
       .catch(error => console.log(error));
 })}
 saveFormulaire();
-
-
 
