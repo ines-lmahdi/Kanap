@@ -67,7 +67,7 @@
   border-radius: 20px;
   border: 1px solid #767676;
   text-align: center;
-  text-align-last: center;
+  /*text-align-last: center;*/
   background-color: #fff;
 }
 .item__content__settings__color select:focus,

@@ -10,31 +10,31 @@ fetch("http://localhost:3000/api/products")
   })
   .then((data) => {
     for (const product of data) {
-      // CREATE ELEMENT
+      // Create element
       const productLink = document.createElement("a");
       const productArticle = document.createElement("article");
       const productImage = document.createElement("img");
       const productTitle = document.createElement("h3");
       const productDescription = document.createElement("p");
 
-      // PRODUCT ID
+      // Product id
 
       productLink.href = "./product.html?id=" + product._id;
       items.append(productLink);
       productLink.append(productArticle);
 
-      // IMAGE + TEXTE ALT
+      // Image + Text alternatif
 
       productImage.src = product.imageUrl;
       productImage.alt = product.altTxt;
       productArticle.append(productImage);
 
-      // PRODUCT NAME
+      // Product name
 
       productTitle.textContent = product.name;
       productArticle.append(productTitle);
 
-      // DESCRIPTION
+      // Description
 
       productDescription.textContent = product.description;
       productArticle.append(productDescription);

@@ -1,11 +1,11 @@
-//DISPLAY ORDER ID
+//Display confirmation
 const confirmation = () => {
   const orderId = window.location.search.split("?orderId=").join("");
   const orderNumber = document.getElementById("orderId");
 
   orderNumber.innerHTML = orderId;
 
-  // CLEANING BASKET
+  // Cleaning basket
 
   localStorage.removeItem("basket");
 };
