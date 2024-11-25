@@ -1,44 +1,46 @@
-const productId = window.location.search.split("?id=").join(""); //Regarder comment utiliser la classe UrlSearchParam
-/*let colorSelector = document.getElementById("colors");*/
+/******************************** PAGE PRODUIT ********************************/
+
+const productId = window.location.search.split("?id=").join("");
+
 const params = fetch("http://localhost:3000/api/products/" + productId)
   .then((response) => response.json())
   .then((productData) => {
-    // IMPLEMENTATION TITRE PAGE
+    //CONST = CREATE ELEMENT
 
-    const productPageTitle = document.title;
+    const productImage = document.createElement("img");
+    const productTitle = document.createElement("h1");
+    const productDescription = document.createElement("p");
+    const productPrice = document.createElement("span");
+    //let colorSelector = document.getElementById("colors");
+    let newOption = document.createElement("option");
+    const tableauColor = productData.colors;
+    // const productPageTitle = document.title;
+    // IMPLEMENTATION NOM
+
     document.title = productData.name;
 
     // IMPLEMENTATION IMAGE
 
-    const productImage = document.createElement("img");
     productImage.src = productData.imageUrl;
     productImage.alt = productData.altTxt;
     image.append(productImage);
 
     // IMPLEMENTATION H1
 
-    const productTitle = document.createElement("h1");
     productTitle.textContent = productData.name;
     title.append(productTitle);
 
     // IMPLEMENTATION DESCRIPTION
 
-    const productDescription = document.createElement("p");
     productDescription.textContent = productData.description;
     description.append(productDescription);
 
     // IMPLEMENTATION PRIX
 
-    const productPrice = document.createElement("span");
     productPrice.textContent = productData.price;
     price.append(productPrice);
 
     // IMPLEMENTATION OPTION COLOR
-
-    let colorSelector = document.getElementById("colors");
-    let newOption = document.createElement("option");
-    const tableauColor = productData.colors;
-    console.log(tableauColor);
 
     for (let element of tableauColor) {
       let newColor = new Option(element);

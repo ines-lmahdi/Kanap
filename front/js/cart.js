@@ -22,13 +22,17 @@ totalQuantityHtml.innerHTML = totalQuantity;
 //Calcule du prix
 let totalPrice = 0;
 
+// Affichage des articles sur la pade d'accueil
+
 function createNewArticle() {
   for (const element of storage) {
     fetch("http://localhost:3000/api/products/" + element.id)
       .then((response) => response.json())
       .then((response) => {
         totalPrice += parseInt(element.quantity) * response.price;
+
         document.getElementById("totalPrice").innerHTML = totalPrice;
+
         cart.innerHTML += `<article class="cart__item" data-id="${response._id}" data-color="${element.color}">
       <div class="cart__item__img">
         <img src="${response.imageUrl}" alt="${response.altTxt}">
@@ -59,6 +63,7 @@ createNewArticle();
 
 function deleteItem(color, id, ctx) {
   let foundProduct = storage.findIndex((p) => p.id == id && color === p.color);
+
   if (foundProduct == -1) {
     return;
   }
@@ -75,3 +80,39 @@ function modifyQuantity() {
 }
 
 modifyQuantity();
+
+// CHATGPT MODIFIER LE TOTAL DU PANIER
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cart = document.getElementById("cart");
+  const totalElement = document.getElementById("total");
+
+  // Fonction pour recalculer le total
+  function calculateTotal() {
+    let total = 0;
+    const items = cart.querySelectorAll(".item");
+    items.forEach((item) => {
+      const quantityInput = item.querySelector(".quantity");
+      const price = parseFloat(quantityInput.dataset.price);
+      const quantity = parseInt(quantityInput.value, 10) || 0;
+      const itemTotal = price * quantity;
+
+      // Mettre à jour l'affichage du prix pour chaque produit
+      item.querySelector(".price").textContent = `${itemTotal} €`;
+      total += itemTotal;
+    });
+
+    // Mettre à jour l'affichage du total
+    totalElement.textContent = `${total} €`;
+  }
+
+  // Ajouter un écouteur sur chaque champ de quantité
+  cart.addEventListener("input", (event) => {
+    if (event.target.classList.contains("quantity")) {
+      calculateTotal();
+    }
+  });
+
+  // Calcul initial au chargement de la page
+  calculateTotal();
+});

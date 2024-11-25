@@ -1,5 +1,3 @@
-// LOCALSTORAGE
-
 //Ajouter au panier
 
 function saveBasket(basket) {
@@ -10,6 +8,7 @@ function saveBasket(basket) {
 
 function getBasket() {
   let basket = localStorage.getItem("basket");
+
   if (basket == null) {
     return [];
   } else {
@@ -20,12 +19,14 @@ function getBasket() {
 // Modifier les quantités
 
 function addBasket(product) {
-  let basket = getBasket();
   const quantitySelect = document.getElementById("quantity").value;
   const colorSelect = document.getElementById("colors").value;
+
+  let basket = getBasket();
   let foundProduct = basket.find(
     (p) => p.id == productId && colorSelect === p.color
   );
+
   if (colorSelect && quantitySelect != 0) {
     if (foundProduct != undefined) {
       foundProduct.quantity =
@@ -37,7 +38,8 @@ function addBasket(product) {
         color: colorSelect,
       });
     }
-    console.log(basket);
+
+    //console.log(basket);
     saveBasket(basket);
   } else {
     alert("Veuillez sélectionner une couleur ainsi qu'une option");
@@ -74,9 +76,12 @@ function getNumberProduct() {
   return number;
 }
 
+// Calculer le total
+
 function getTotalPrice() {
   let basket = getBasket();
   let total = 0;
+
   for (let product of basket) {
     total += product.quantity * product.price;
   }
