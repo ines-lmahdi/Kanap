@@ -10,6 +10,7 @@ fetch("http://localhost:3000/api/products")
   })
   .then((data) => {
     for (const product of data) {
+      // CREATE ELEMENT
       const productLink = document.createElement("a");
       const productArticle = document.createElement("article");
       const productImage = document.createElement("img");
@@ -17,6 +18,7 @@ fetch("http://localhost:3000/api/products")
       const productDescription = document.createElement("p");
 
       // PRODUCT ID
+
       productLink.href = "./product.html?id=" + product._id;
       items.append(productLink);
       productLink.append(productArticle);

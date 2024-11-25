@@ -1,7 +1,13 @@
-const orderId = window.location.search.split("?orderId=").join("");
+//DISPLAY ORDER ID
+const confirmation = () => {
+  const orderId = window.location.search.split("?orderId=").join("");
+  const orderNumber = document.getElementById("orderId");
 
-const orderNumber = document.getElementById('orderId');
+  orderNumber.innerHTML = orderId;
 
-orderNumber.innerHTML = orderId;
+  // CLEANING BASKET
 
-localStorage.removeItem('basket');
+  localStorage.removeItem("basket");
+};
+
+confirmation();

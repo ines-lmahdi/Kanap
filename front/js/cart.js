@@ -1,34 +1,45 @@
-function saveBasket(basket) {
+// Save Basket
+
+const saveBasket = (basket) => {
   console.log("saveBasket");
   localStorage.setItem("basket", JSON.stringify(basket));
-}
-// Creer un article
+};
+
+// ????
 
 const cartArticle = document.createElement("article");
 let storage = JSON.parse(localStorage.getItem("basket"));
 cartArticle.innerHTML = storage.id;
 let cart = document.getElementById("cart__items");
 
-// Quantité
+// Quantity
 
-let totalQuantity = 0;
-for (const element of storage) {
-  totalQuantity += parseInt(element.quantity);
-}
+const getTotalQuantity = () => {
+  const totalQuantityHtml = document.getElementById("totalQuantity");
+  totalQuantityHtml.innerHTML = totalQuantity;
+  let totalQuantity = 0;
+  for (const element of storage) {
+    totalQuantity += parseInt(element.quantity);
+  }
+};
 
-const totalQuantityHtml = document.getElementById("totalQuantity");
-totalQuantityHtml.innerHTML = totalQuantity;
+// const getTotalPrice = () => {
+//   const totalPriceHtml = document.getElementById("totalPrice");
+//   totalPriceHtml.innerHTML = totalPrice;
+//   for (const element of storage) {
+//     totalPrice += parseInt(element.price);
+//   }
+// };
 
-//Calcule du prix
-let totalPrice = 0;
+// Display items in cart
 
-// Affichage des articles sur la pade d'accueil
-
-function createNewArticle() {
+const getItemsCart = () => {
   for (const element of storage) {
     fetch("http://localhost:3000/api/products/" + element.id)
       .then((response) => response.json())
       .then((response) => {
+        let totalPrice = 0;
+
         totalPrice += parseInt(element.quantity) * response.price;
 
         document.getElementById("totalPrice").innerHTML = totalPrice;
@@ -56,12 +67,12 @@ function createNewArticle() {
       </article>`;
       });
   }
-}
-createNewArticle();
+};
+getItemsCart();
 
-// Supprimer un element du panier
+// Remove cart product quantities
 
-function deleteItem(color, id, ctx) {
+const deleteItem = (color, id, ctx) => {
   let foundProduct = storage.findIndex((p) => p.id == id && color === p.color);
 
   if (foundProduct == -1) {
@@ -71,48 +82,12 @@ function deleteItem(color, id, ctx) {
   localStorage.setItem("basket", JSON.stringify(storage));
   console.log(ctx);
   ctx.parentElement.parentElement.parentElement.parentElement.remove();
-}
+};
 
-//Modifier les quantités du panier
+// Modify cart product quantities
 
-function modifyQuantity() {
+const modifyQuantity = () => {
   let quantity = document.getElementsByClassName("itemQuantity").value;
-}
+};
 
 modifyQuantity();
-
-// CHATGPT MODIFIER LE TOTAL DU PANIER
-
-document.addEventListener("DOMContentLoaded", () => {
-  const cart = document.getElementById("cart");
-  const totalElement = document.getElementById("total");
-
-  // Fonction pour recalculer le total
-  function calculateTotal() {
-    let total = 0;
-    const items = cart.querySelectorAll(".item");
-    items.forEach((item) => {
-      const quantityInput = item.querySelector(".quantity");
-      const price = parseFloat(quantityInput.dataset.price);
-      const quantity = parseInt(quantityInput.value, 10) || 0;
-      const itemTotal = price * quantity;
-
-      // Mettre à jour l'affichage du prix pour chaque produit
-      item.querySelector(".price").textContent = `${itemTotal} €`;
-      total += itemTotal;
-    });
-
-    // Mettre à jour l'affichage du total
-    totalElement.textContent = `${total} €`;
-  }
-
-  // Ajouter un écouteur sur chaque champ de quantité
-  cart.addEventListener("input", (event) => {
-    if (event.target.classList.contains("quantity")) {
-      calculateTotal();
-    }
-  });
-
-  // Calcul initial au chargement de la page
-  calculateTotal();
-});
