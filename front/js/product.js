@@ -1,57 +1,57 @@
-/******************************** PAGE PRODUIT ********************************/
 const productId = window.location.search.split("?id=").join("");
 
-fetch("http://localhost:3000/api/products/" + productId)
-  .then((response) => response.json())
+fetch(`http://localhost:3000/api/products/${productId}`)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Échec de la récupération des données");
+    }
+    return response.json();
+  })
   .then((productData) => {
-    // Create element
+    // Selecting DOM Elements
+    const image = document.querySelector("#image");
+    const title = document.querySelector("#title");
+    const description = document.querySelector("#description");
+    const price = document.querySelector("#price");
+    const select = document.querySelector("select"); // Sélectionne le <select> une seule fois
 
+    document.title = productData.name;
+
+    // Creation of elements
     const productImage = document.createElement("img");
     const productTitle = document.createElement("h1");
     const productDescription = document.createElement("p");
     const productPrice = document.createElement("span");
-    let newOption = document.createElement("option");
-    const tabColor = productData.colors;
 
-    // Implementation name
-
-    document.title = productData.name;
-
-    // Implementation image
-
+    // Implementation of elements
     productImage.src = productData.imageUrl;
     productImage.alt = productData.altTxt;
-    image.append(productImage);
-
-    // Implementation H1
+    image.appendChild(productImage);
 
     productTitle.textContent = productData.name;
-    title.append(productTitle);
-
-    // Implementation description
+    title.appendChild(productTitle);
 
     productDescription.textContent = productData.description;
-    description.append(productDescription);
+    description.appendChild(productDescription);
 
-    // Implementation price
+    productPrice.textContent = `${productData.price} `; // Format de prix
+    price.appendChild(productPrice);
 
-    productPrice.textContent = productData.price;
-    price.append(productPrice);
+    // Implementing color options in select
+    const tabColor = productData.colors;
+    tabColor.forEach((color) => {
+      const newColorOption = document.createElement("option");
 
-    // Implementation option color
+      newColorOption.value = color;
+      newColorOption.textContent = color;
+      select.appendChild(newColorOption);
+    });
 
-    for (let element of tabColor) {
-      let newColor = new Option(element);
-      newOption.setAttribute("value", element);
-      const select = document.querySelector("select");
-      select.add(newColor, undefined);
-    }
+    // Event button "add to cart"
+    const addToCartButton = document.querySelector("#addToCart");
 
-    // Add to card button
-
-    const addToCartButton = document.querySelector("#addToCart"); // Assurez-vous que ce bouton existe dans votre HTML
     addToCartButton.addEventListener("click", () => {
-      const selectedColor = document.querySelector("#colors").value;
+      const selectedColor = select.value;
       const quantity = parseInt(document.querySelector("#quantity").value, 10);
 
       if (!selectedColor || quantity <= 0) {
@@ -71,7 +71,10 @@ fetch("http://localhost:3000/api/products/" + productId)
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-
-      window.location.href = "./cart.html";
+      window.location.href = "./cart.html"; // Redirection vers la page du panier
     });
+  })
+  .catch((error) => {
+    window.alert("Erreur de chargement des données produit :", error);
+    alert("Une erreur est survenue lors de la récupération des produits.");
   });
