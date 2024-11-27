@@ -41,5 +41,5 @@ fetch("http://localhost:3000/api/products")
     }
   })
   .catch((error) => {
-    console.log("toto", error.message);
+    window.alert("erreur", error.message);
   });

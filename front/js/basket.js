@@ -39,7 +39,6 @@ function addBasket(product) {
       });
     }
 
-    //console.log(basket);
     saveBasket(basket);
   } else {
     alert("Veuillez sélectionner une couleur ainsi qu'une option");

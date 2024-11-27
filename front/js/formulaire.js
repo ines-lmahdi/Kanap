@@ -1,45 +1,41 @@
 // FORM
-const saveForm = () => {
-  let form = document.querySelector(".cart__order__form");
-  const formData = new FormData(form);
-  const data = {};
-  const products = JSON.parse(localStorage.getItem("basket"));
+let form = document.querySelector(".cart__order__form");
+const formData = new FormData(form);
+const data = {};
+const products = JSON.parse(localStorage.getItem("basket"));
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-    if (
-      !controlFirstName() ||
-      !controlLastName() ||
-      !controlAddress() ||
-      !controlCity() ||
-      !controlEmail()
-    ) {
-      return;
-    }
+  if (
+    !controlFirstName() ||
+    !controlLastName() ||
+    !controlAddress() ||
+    !controlCity() ||
+    !controlEmail()
+  ) {
+    return;
+  }
 
-    data.contact = Object.fromEntries(formData);
-    data.products = [];
-    for (element of products) {
-      data.products.push(element.id);
-    }
+  data.contact = Object.fromEntries(formData);
+  data.products = [];
+  for (element of products) {
+    data.products.push(element.id);
+  }
 
-    fetch("http://localhost:3000/api/products/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+  fetch("http://localhost:3000/api/products/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      window.location = form.getAttribute("action") + data.orderId;
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(form.getAttribute("action"));
-        window.location = form.getAttribute("action") + data.orderId;
-      })
-      .catch((error) => console.log(error));
-  });
-};
-saveForm();
+    .catch((error) => window.alert(error));
+});
 
 // REGEX
 

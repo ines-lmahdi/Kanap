@@ -1,7 +1,7 @@
 /******************************** PAGE PRODUIT ********************************/
 const productId = window.location.search.split("?id=").join("");
 
-const params = fetch("http://localhost:3000/api/products/" + productId)
+fetch("http://localhost:3000/api/products/" + productId)
   .then((response) => response.json())
   .then((productData) => {
     // Create element
@@ -11,7 +11,7 @@ const params = fetch("http://localhost:3000/api/products/" + productId)
     const productDescription = document.createElement("p");
     const productPrice = document.createElement("span");
     let newOption = document.createElement("option");
-    const tableauColor = productData.colors;
+    const tabColor = productData.colors;
 
     // Implementation name
 
@@ -40,7 +40,7 @@ const params = fetch("http://localhost:3000/api/products/" + productId)
 
     // Implementation option color
 
-    for (let element of tableauColor) {
+    for (let element of tabColor) {
       let newColor = new Option(element);
       newOption.setAttribute("value", element);
       const select = document.querySelector("select");
