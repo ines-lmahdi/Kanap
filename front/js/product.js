@@ -1,4 +1,5 @@
-const productId = window.location.search.split("?id=").join("");
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get("id");
 
 fetch(`http://localhost:3000/api/products/${productId}`)
   .then((response) => {
@@ -71,7 +72,7 @@ fetch(`http://localhost:3000/api/products/${productId}`)
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      window.location.href = "./cart.html"; // Redirection vers la page du panier
+      window.location.href = "./cart.html";
     });
   })
   .catch((error) => {
