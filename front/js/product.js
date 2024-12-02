@@ -35,7 +35,7 @@ fetch(`http://localhost:3000/api/products/${productId}`)
     productDescription.textContent = productData.description;
     description.appendChild(productDescription);
 
-    productPrice.textContent = `${productData.price} `; // Format de prix
+    productPrice.textContent = `${productData.price} `;
     price.appendChild(productPrice);
 
     // Implementing color options in select
@@ -48,7 +48,8 @@ fetch(`http://localhost:3000/api/products/${productId}`)
       select.appendChild(newColorOption);
     });
 
-    // Event button "add to cart"
+    //Event button "add to cart"
+
     const addToCartButton = document.querySelector("#addToCart");
 
     addToCartButton.addEventListener("click", () => {
@@ -77,5 +78,4 @@ fetch(`http://localhost:3000/api/products/${productId}`)
   })
   .catch((error) => {
     window.alert("Erreur de chargement des données produit :", error);
-    alert("Une erreur est survenue lors de la récupération des produits.");
   });

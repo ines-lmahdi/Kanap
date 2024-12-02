@@ -17,24 +17,17 @@ fetch("http://localhost:3000/api/products")
       const productTitle = document.createElement("h3");
       const productDescription = document.createElement("p");
 
-      // Product id
-
+      // Implementation
       productLink.href = "./product.html?id=" + product._id;
       items.append(productLink);
       productLink.append(productArticle);
-
-      // Image + Text alternatif
 
       productImage.src = product.imageUrl;
       productImage.alt = product.altTxt;
       productArticle.append(productImage);
 
-      // Product name
-
       productTitle.textContent = product.name;
       productArticle.append(productTitle);
-
-      // Description
 
       productDescription.textContent = product.description;
       productArticle.append(productDescription);

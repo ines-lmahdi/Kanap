@@ -1,13 +1,16 @@
 //Display confirmation
 const confirmation = () => {
-  const orderId = window.location.search.split("?orderId=").join("");
-  const orderNumber = document.getElementById("orderId");
+  const urlParams = new URLSearchParams(window.location.search);
+  const orderId = urlParams.get("orderId");
 
-  orderNumber.innerHTML = orderId;
+  if (orderId) {
+    const orderNumber = document.getElementById("orderId");
+    orderNumber.innerHTML = orderId;
 
-  // Cleaning basket
-
-  localStorage.removeItem("basket");
+    localStorage.removeItem("basket");
+  } else {
+    window.alert("Numéro de commande introuvable.");
+  }
 };
 
 confirmation();

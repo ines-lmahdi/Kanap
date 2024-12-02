@@ -1,95 +1,79 @@
-//Ajouter au panier
+// const saveBasket = (basket) => {
+//   localStorage.setItem("basket", JSON.stringify(basket));
+// };
 
-function saveBasket(basket) {
-  localStorage.setItem("basket", JSON.stringify(basket));
-}
+// const getBasket = () => {
+//   let basket = localStorage.getItem("basket");
 
-// Recuperer ce qu'il y a au panier
+//   if (basket == null) {
+//     return [];
+//   } else {
+//     return JSON.parse(basket);
+//   }
+// };
 
-function getBasket() {
-  let basket = localStorage.getItem("basket");
+// const addBasket = (product) => {
+//   const quantitySelect = document.getElementById("quantity").value;
+//   const colorSelect = document.getElementById("colors").value;
 
-  if (basket == null) {
-    return [];
-  } else {
-    return JSON.parse(basket);
-  }
-}
+//   let basket = getBasket();
+//   let foundProduct = basket.find(
+//     (p) => p.id == productId && colorSelect === p.color
+//   );
 
-// Modifier les quantités
+//   if (colorSelect && quantitySelect != 0) {
+//     if (foundProduct != undefined) {
+//       foundProduct.quantity =
+//         parseInt(foundProduct.quantity) + parseInt(quantitySelect);
+//     } else {
+//       basket.push({
+//         id: productId,
+//         quantity: quantitySelect,
+//         color: colorSelect,
+//       });
+//     }
 
-function addBasket(product) {
-  const quantitySelect = document.getElementById("quantity").value;
-  const colorSelect = document.getElementById("colors").value;
+//     saveBasket(basket);
+//   } else {
+//     alert("Veuillez sélectionner une couleur ainsi qu'une option");
+//   }
+// };
 
-  let basket = getBasket();
-  let foundProduct = basket.find(
-    (p) => p.id == productId && colorSelect === p.color
-  );
+// const changeQuantity = (product, quantity) => {
+//   let basket = getBasket();
+//   let foundProduct = basket.find((p) => p.id == product.id);
 
-  if (colorSelect && quantitySelect != 0) {
-    if (foundProduct != undefined) {
-      foundProduct.quantity =
-        parseInt(foundProduct.quantity) + parseInt(quantitySelect);
-    } else {
-      basket.push({
-        id: productId,
-        quantity: quantitySelect,
-        color: colorSelect,
-      });
-    }
+//   if (foundProduct != undefined) {
+//     foundProduct.quantity += quantity;
 
-    saveBasket(basket);
-  } else {
-    alert("Veuillez sélectionner une couleur ainsi qu'une option");
-  }
-}
+//     if (foundProduct.quantity <= 0) {
+//       removeFromBasket(foundProduct);
+//     } else {
+//       saveBasket(basket);
+//     }
+//   }
+// };
 
-//Modifier les quantités depuis le panier
+// const getNumberProduct = () => {
+//   let basket = getBasket();
+//   let number = 0;
 
-function changeQuantity(product, quantity) {
-  let basket = getBasket();
-  let foundProduct = basket.find((p) => p.id == product.id);
+//   for (let product of basket) {
+//     number += product.quantity;
+//   }
+//   return number;
+// };
 
-  if (foundProduct != undefined) {
-    foundProduct.quantity += quantity;
+// const getTotalPrice = () => {
+//   let basket = getBasket();
+//   let total = 0;
 
-    if (foundProduct.quantity <= 0) {
-      removeFromBasket(foundProduct);
-    } else {
-      saveBasket(basket);
-    }
-  }
-  //saveBasket(basket);
-}
+//   for (let product of basket) {
+//     total += product.quantity * product.price;
+//   }
+//   return total;
+// };
 
-//Calculer le prix
+// let addToCart = document.getElementById("addToCart");
 
-function getNumberProduct() {
-  let basket = getBasket();
-  let number = 0;
-
-  for (let product of basket) {
-    number += product.quantity;
-  }
-  return number;
-}
-
-// Calculer le total
-
-function getTotalPrice() {
-  let basket = getBasket();
-  let total = 0;
-
-  for (let product of basket) {
-    total += product.quantity * product.price;
-  }
-  return total;
-}
-//localStorage.clear();
-
-// BOUTON addToCart
-
-let addToCart = document.getElementById("addToCart");
-
-addToCart.addEventListener("click", addBasket);
+// addToCart.addEventListener("click", addBasket);

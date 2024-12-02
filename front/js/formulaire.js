@@ -39,53 +39,53 @@ form.addEventListener("submit", (event) => {
 
 // REGEX
 
-const controlFirstName = () => {
-  const firstNameValue = document.querySelector("#firstName").value;
+const validateField = (selector, regex, errorMessage) => {
+  const fieldValue = document.querySelector(selector).value;
 
-  if (/^[A-Za-zéèëêï]{2,40}$/.test(firstNameValue)) {
+  if (regex.test(fieldValue)) {
     return true;
   } else {
-    window.alert("Le prénom n'est pas valide");
+    window.alert(errorMessage);
     return false;
   }
 };
 
-const controlLastName = () => {
-  const lastNameValue = document.querySelector("#lastName").value;
+const controlFirstName = () => {
+  return validateField(
+    "#firstName",
+    /^[A-Za-zéèëêï]{2,40}$/,
+    "Le prénom n'est pas valide"
+  );
+};
 
-  if (/^[A-Za-zéèëêï]{2,40}$/.test(lastNameValue)) {
-    return true;
-  } else {
-    window.alert("Le nom n'est pas valide");
-  }
+const controlLastName = () => {
+  return validateField(
+    "#lastName",
+    /^[A-Za-zéèëêï]{2,40}$/,
+    "Le nom n'est pas valide"
+  );
 };
 
 const controlAddress = () => {
-  const addressValue = document.querySelector("#address").value;
-
-  if (/^[A-Za-zéèëêï.- 0-9]{5,50}$/.test(addressValue)) {
-    return true;
-  } else {
-    window.alert("l'adresse n'est pas valide");
-  }
+  return validateField(
+    "#address",
+    /^[A-Za-zéèëêï.- 0-9]{5,50}$/,
+    "L'adresse n'est pas valide"
+  );
 };
 
 const controlCity = () => {
-  const cityValue = document.querySelector("#city").value;
-
-  if (/^[A-Za-zéèëêï.-]{2,100}$/.test(cityValue)) {
-    return true;
-  } else {
-    window.alert("La ville n'est pas valide");
-  }
+  return validateField(
+    "#city",
+    /^[A-Za-zéèëêï.-]{2,100}$/,
+    "La ville n'est pas valide"
+  );
 };
 
 const controlEmail = () => {
-  const emailValue = document.querySelector("#email").value;
-
-  if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(emailValue)) {
-    return true;
-  } else {
-    window.alert("email est invalide");
-  }
+  return validateField(
+    "#email",
+    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+    "L'email est invalide"
+  );
 };
