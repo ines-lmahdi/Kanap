@@ -1,11 +1,13 @@
-// FORM
+// Display form
+
 let form = document.querySelector(".cart__order__form");
 const formData = new FormData(form);
 const data = {};
-const products = JSON.parse(localStorage.getItem("basket"));
+const products = JSON.parse(localStorage.getItem("cart"));
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  event.stopPropagation();
 
   if (
     !controlFirstName() ||
@@ -19,6 +21,7 @@ form.addEventListener("submit", (event) => {
 
   data.contact = Object.fromEntries(formData);
   data.products = [];
+
   for (element of products) {
     data.products.push(element.id);
   }
@@ -69,7 +72,7 @@ const controlLastName = () => {
 const controlAddress = () => {
   return validateField(
     "#address",
-    /^[A-Za-zéèëêï.- 0-9]{5,50}$/,
+    /^[A-Za-zéèëêï. 0-9-]{5,50}$/,
     "L'adresse n'est pas valide"
   );
 };
