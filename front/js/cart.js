@@ -11,7 +11,7 @@ const getCart = () => {
 };
 
 const addToCart = (productId, selectedColor, quantity) => {
-  if (!selectedColor || quantity <= 0) {
+  if (!selectedColor || quantity < 1 || quantity > 100) {
     window.alert("Veuillez sélectionner une couleur et une quantité valide.");
     return;
   }
@@ -152,5 +152,5 @@ const initProductPage = (productId) => {
 if (document.getElementById("cart__items")) {
   displayCart();
 } else {
-  window.alert("L'élément avec l'ID 'cart__items' n'a pas été trouvé.");
+  console.alert("L'élément n'a pas été trouvé.");
 }

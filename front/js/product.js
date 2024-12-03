@@ -16,7 +16,7 @@ fetch(`http://localhost:3000/api/products/${productId}`)
     const title = document.querySelector("#title");
     const description = document.querySelector("#description");
     const price = document.querySelector("#price");
-    const select = document.querySelector("select"); // Sélectionne le <select> une seule fois
+    const select = document.querySelector("select");
 
     document.title = productData.name;
 
@@ -58,7 +58,7 @@ fetch(`http://localhost:3000/api/products/${productId}`)
       const selectedColor = select.value;
       const quantity = parseInt(document.querySelector("#quantity").value, 10);
 
-      if (!selectedColor || quantity <= 0) {
+      if (!selectedColor || quantity <= 0 || quantity > 101) {
         alert("Veuillez sélectionner une couleur et une quantité valide.");
         return;
       }
