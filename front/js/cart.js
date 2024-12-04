@@ -81,7 +81,7 @@ const updateCartSummary = async () => {
   });
 
   totalQuantityHtml.innerHTML = totalQuantity;
-  totalPriceHtml.innerHTML = totalPrice.toFixed(2);
+  totalPriceHtml.innerHTML = totalPrice.toFixed(0);
 };
 
 // Cart display
@@ -152,5 +152,5 @@ const initProductPage = (productId) => {
 if (document.getElementById("cart__items")) {
   displayCart();
 } else {
-  console.alert("L'élément n'a pas été trouvé.");
+  console.log("L'élément n'a pas été trouvé.");
 }

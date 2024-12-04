@@ -2,7 +2,7 @@
 
 const urlParams = new URLSearchParams(window.location.search);
 const orderId = urlParams.get("orderId");
-
+console.log(urlParams);
 if (orderId) {
   const orderNumber = document.getElementById("orderId");
   console.log(orderId);
