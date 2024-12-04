@@ -34,5 +34,5 @@ fetch("http://localhost:3000/api/products")
     }
   })
   .catch((error) => {
-    window.alert("Impossible de chargé les produits", error.message);
+    window.alert("Les produits sont indisponibles");
   });

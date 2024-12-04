@@ -149,8 +149,12 @@ const initProductPage = (productId) => {
 
 // Initialization of the cart page
 
-if (document.getElementById("cart__items")) {
-  displayCart();
-} else {
-  console.log("L'élément n'a pas été trouvé.");
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const cartItems = document.getElementById("cart__items");
+  if (cartItems) {
+    console.log("Élément trouvé :", cartItems); // Debug
+    displayCart();
+  } else {
+    console.error("L'élément n'a pas été trouvé.");
+  }
+});

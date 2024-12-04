@@ -79,5 +79,5 @@ fetch(`http://localhost:3000/api/products/${productId}`)
     });
   })
   .catch((error) => {
-    window.alert("Erreur de chargement des données produit :", error);
+    console.error("Erreur de chargement des données produit :", error);
   });
