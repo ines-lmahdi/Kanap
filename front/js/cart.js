@@ -1,5 +1,3 @@
-// All cart functions
-
 const cart_key = "cart";
 
 const saveCart = (cart) => {
@@ -11,7 +9,7 @@ const getCart = () => {
 };
 
 const addToCart = (productId, selectedColor, quantity) => {
-  if (!selectedColor || quantity < 1 || quantity > 100) {
+  if (!selectedColor || quantity < 1 || quantity >= 100) {
     window.alert("Veuillez sélectionner une couleur et une quantité valide.");
     return;
   }
@@ -28,7 +26,6 @@ const addToCart = (productId, selectedColor, quantity) => {
   }
 
   saveCart(cart);
-  window.alert("Produit ajouté au panier !");
   updateCartSummary();
 };
 
@@ -37,8 +34,8 @@ const updateCartQuantity = (id, color, newQuantity) => {
   const product = cart.find((item) => item.id === id && item.color === color);
 
   if (product) {
-    if (newQuantity <= 0) {
-      cart = cart.filter((item) => !(item.id === id && item.color === color));
+    if (newQuantity < 1 || newQuantity >= 100) {
+      window.alert("Vous ne pouvez commander qu'entre 1 et 100 canapé");
     } else {
       product.quantity = parseInt(newQuantity, 10);
     }
@@ -136,25 +133,26 @@ const displayCart = async () => {
 
 // Button event "add to cart"
 
-const initProductPage = (productId) => {
-  const addToCartButton = document.querySelector("#addToCart");
+// const initProductPage = (productId) => {
+//   const addToCartButton = document.querySelector("#addToCart");
 
-  addToCartButton.addEventListener("click", () => {
-    const selectedColor = document.querySelector("#colors").value;
-    const quantity = parseInt(document.querySelector("#quantity").value, 10);
-
-    addToCart(productId, selectedColor, quantity);
-  });
-};
+//   addToCartButton.addEventListener("click", () => {
+//     const selectedColor = document.querySelector("#colors").value;
+//     const quantity = parseInt(document.querySelector("#quantity").value, 10);
+//     if (quantity >= 1 && quantity <= 100) {
+//       addToCart(productId, selectedColor, quantity);
+//       window.alert("je suis sur quel page là ?");
+//     } else {
+//       window.alert("merci de renseigner une quantité comprise entre 1 et 100");
+//     }
+//   });
+// };
 
 // Initialization of the cart page
 
 document.addEventListener("DOMContentLoaded", () => {
   const cartItems = document.getElementById("cart__items");
   if (cartItems) {
-    console.log("Élément trouvé :", cartItems); // Debug
     displayCart();
-  } else {
-    console.error("L'élément n'a pas été trouvé.");
   }
 });

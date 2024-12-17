@@ -4,8 +4,7 @@ let form = document.querySelector(".cart__order__form");
 const formData = new FormData(form);
 const data = {};
 const products = JSON.parse(localStorage.getItem("cart"));
-
-form.addEventListener("submit", (event) => {
+const contact = form.addEventListener("submit", (event) => {
   event.preventDefault();
   event.stopPropagation();
 
@@ -25,6 +24,7 @@ form.addEventListener("submit", (event) => {
   for (element of products) {
     data.products.push(element.id);
   }
+  console.log(data);
 
   fetch("http://localhost:3000/api/products/order", {
     method: "POST",
@@ -35,10 +35,13 @@ form.addEventListener("submit", (event) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       window.location = form.getAttribute("action") + data.orderId;
     })
     .catch((error) => window.alert(error));
 });
+
+console.log(contact);
 
 // REGEX
 

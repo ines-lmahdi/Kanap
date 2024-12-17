@@ -4,11 +4,11 @@ const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 
 fetch(`http://localhost:3000/api/products/${productId}`)
-  .then((response) => {
-    if (!response.ok) {
+  .then((res) => {
+    if (!res.ok) {
       throw new Error("Échec de la récupération des données");
     }
-    return response.json();
+    return res.json();
   })
   .then((productData) => {
     // Selecting DOM Elements
@@ -80,4 +80,5 @@ fetch(`http://localhost:3000/api/products/${productId}`)
   })
   .catch((error) => {
     console.error("Erreur de chargement des données produit :", error);
+    window.alert("Ce produit est introuvable ! ");
   });
