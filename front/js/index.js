@@ -8,31 +8,35 @@ données trouver
 3/ Dans le catch, faire un message d'erreur dans le cas où l'api ne repond pas.
 
 */
-const items = document.querySelector("#items");
 
 // fetch("http://localhost:3000/api/products")
 //   .then((response) => response.json())
 //   .then((data) => console.log(data))
 //   .catch((err) => console.log(err));
+
 fetch("http://localhost:3000/api/products")
-  .then((response) => response.json())
+  .then((res) => res.json())
   .then((data) => {
     for (const product of data) {
-      const productArticle = document.createElement("article");
+      const items = document.querySelector("#items");
+      const article = document.createElement("article");
+      const link = document.createElement("a");
+      const image = document.createElement("img");
+      const description = document.createElement("p");
+      const name = document.createElement("h3");
 
-      const productLink = document.createElement("a");
-      productLink.href = "./product.html?id=" + product._id;
-      items.append(productLink);
-      productLink.append(productArticle);
+      link.href = "./product.html?id=" + product._id;
+      image.src = product.imageUrl;
+      image.alt = product.altTxt;
+      name.innerHTML = product.name;
+      description.innerHTML = product.description;
+      name.innerHTML = product.name;
 
-      const productImage = document.createElement("img");
-      productImage.src = product.imageUrl;
-      productImage.alt = product.altTxt;
-      productArticle.append(productImage);
-
-      const productDescription = document.createElement("p");
-      productDescription.innerHTML = product.description;
-      productArticle.append(productDescription);
+      items.append(link);
+      link.append(article);
+      article.append(name);
+      article.append(image);
+      article.append(description);
     }
   })
   .catch((err) => console.log(err));
